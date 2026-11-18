@@ -1,0 +1,13 @@
+**/node_modules
+**/dist
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+.env
+data/uploads/*
+data/processed/*
+data/*.db*
+data/m5/*
+models/*
+reports/*
+.git

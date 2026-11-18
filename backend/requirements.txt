@@ -1,0 +1,38 @@
+# RetailIQ backend - Python 3.10 - 3.13
+# Version ranges are tested; the exact versions used in development are noted.
+
+# --- API ---------------------------------------------------------------
+fastapi>=0.115,<0.116            # dev: 0.115.14
+uvicorn[standard]>=0.32,<0.35    # dev: 0.32.1
+pydantic>=2.9,<3
+pydantic-settings>=2.6,<3
+email-validator>=2.2
+python-multipart>=0.0.12
+
+# --- Database ----------------------------------------------------------
+sqlalchemy>=2.0.36,<2.1
+alembic>=1.14,<1.17
+psycopg[binary]>=3.2,<3.3        # PostgreSQL driver
+
+# --- Security ----------------------------------------------------------
+PyJWT>=2.9,<3
+bcrypt>=4.2,<5
+
+# --- Data science / ML -------------------------------------------------
+pandas>=2.2,<4
+numpy>=1.26,<3
+scipy>=1.13
+scikit-learn>=1.5,<2
+xgboost>=2.1,<3.1
+statsmodels>=0.14.4
+shap>=0.46
+joblib>=1.4
+matplotlib>=3.9
+seaborn>=0.13.2
+
+# --- Reports & files ---------------------------------------------------
+openpyxl>=3.1.5
+reportlab>=4.2
+
+# --- Optional LLM calls for the assistant ------------------------------
+httpx>=0.27

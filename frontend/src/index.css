@@ -1,0 +1,106 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+ * Design tokens (shadcn/ui convention): HSL channels, consumed by tailwind.config.js.
+ * Brand = deep teal. Chart series colours come from the validated data-viz palette.
+ */
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 222 47% 11%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 47% 11%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 47% 11%;
+    --primary: 175 84% 26%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 210 25% 95%;
+    --secondary-foreground: 222 47% 15%;
+    --muted: 210 25% 95%;
+    --muted-foreground: 215 16% 42%;
+    --accent: 173 60% 94%;
+    --accent-foreground: 175 84% 20%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 24% 90%;
+    --input: 214 24% 86%;
+    --ring: 175 84% 32%;
+    --radius: 0.75rem;
+    --sidebar: 0 0% 100%;
+    --sidebar-foreground: 222 30% 25%;
+    --success: 142 72% 29%;
+    --warning: 35 92% 42%;
+    --critical: 0 72% 48%;
+
+    /* chart tokens (validated categorical palette, light) */
+    --chart-surface: #ffffff;
+    --chart-grid: #e8ebef;
+    --chart-axis: #64748b;
+    --series-1: #2a78d6; --series-2: #eb6834; --series-3: #1baf7a; --series-4: #eda100;
+    --series-5: #e87ba4; --series-6: #008300; --series-7: #6250d6; --series-8: #e34948;
+  }
+
+  .dark {
+    --background: 222 47% 6%;
+    --foreground: 210 30% 96%;
+    --card: 222 40% 9%;
+    --card-foreground: 210 30% 96%;
+    --popover: 222 40% 10%;
+    --popover-foreground: 210 30% 96%;
+    --primary: 172 66% 45%;
+    --primary-foreground: 222 47% 8%;
+    --secondary: 217 30% 16%;
+    --secondary-foreground: 210 30% 96%;
+    --muted: 217 30% 15%;
+    --muted-foreground: 215 20% 68%;
+    --accent: 175 50% 15%;
+    --accent-foreground: 172 66% 75%;
+    --destructive: 0 70% 55%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 217 28% 18%;
+    --input: 217 28% 22%;
+    --ring: 172 66% 45%;
+    --sidebar: 222 44% 8%;
+    --sidebar-foreground: 215 25% 80%;
+    --success: 142 60% 45%;
+    --warning: 38 92% 55%;
+    --critical: 0 75% 62%;
+
+    --chart-surface: #111827;
+    --chart-grid: #1f2a3a;
+    --chart-axis: #94a3b8;
+    --series-1: #3987e5; --series-2: #d95926; --series-3: #199e70; --series-4: #c98500;
+    --series-5: #d55181; --series-6: #0ca30c; --series-7: #9085e9; --series-8: #e66767;
+  }
+
+  * { @apply border-border; }
+  html { -webkit-tap-highlight-color: transparent; }
+  body {
+    @apply bg-background text-foreground antialiased;
+    font-feature-settings: "cv11", "ss01";
+    overflow-x: hidden;
+  }
+  /* comfortable touch targets on touch devices */
+  @media (pointer: coarse) {
+    button, [role="button"], a, select, input { min-height: 40px; }
+  }
+}
+
+@layer utilities {
+  .tabular { font-variant-numeric: tabular-nums; }
+  .safe-bottom { padding-bottom: env(safe-area-inset-bottom); }
+  .scrollbar-thin { scrollbar-width: thin; }
+  .bg-grid {
+    background-image: linear-gradient(to right, hsl(var(--border) / .6) 1px, transparent 1px),
+                      linear-gradient(to bottom, hsl(var(--border) / .6) 1px, transparent 1px);
+    background-size: 44px 44px;
+  }
+}
+
+/* Recharts tweaks: keep text in ink tokens, never series colours */
+.recharts-cartesian-axis-tick-value { fill: var(--chart-axis); font-size: 11px; }
+.recharts-legend-item-text { color: hsl(var(--foreground)) !important; font-size: 12px; }
+.recharts-tooltip-cursor { fill: hsl(var(--muted) / 0.6); }
+.recharts-surface:focus, .recharts-wrapper:focus { outline: none; }

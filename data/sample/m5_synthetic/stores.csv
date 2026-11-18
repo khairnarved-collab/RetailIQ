@@ -1,0 +1,11 @@
+store_id,state_id,store_name
+CA_1,CA,Los Angeles Central
+CA_2,CA,San Diego Harbor
+CA_3,CA,San Francisco Bay
+CA_4,CA,Fresno Valley
+TX_1,TX,Houston Galleria
+TX_2,TX,Dallas Uptown
+TX_3,TX,Austin Hills
+WI_1,WI,Milwaukee Lakeside
+WI_2,WI,Madison Capitol
+WI_3,WI,Green Bay North

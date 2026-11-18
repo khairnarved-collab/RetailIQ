@@ -1,0 +1,53 @@
+# RetailIQ - full stack: PostgreSQL + FastAPI + React (nginx)
+#   cp .env.example .env      # then edit secrets
+#   docker compose up --build
+#   open http://localhost:8080
+services:
+  db:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-retailiq}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-retailiq}
+      POSTGRES_DB: ${POSTGRES_DB:-retailiq}
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-retailiq} -d ${POSTGRES_DB:-retailiq}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  backend:
+    build: { context: ., dockerfile: backend/Dockerfile }
+    restart: unless-stopped
+    env_file: .env
+    environment:
+      DATABASE_URL: postgresql+psycopg://${POSTGRES_USER:-retailiq}:${POSTGRES_PASSWORD:-retailiq}@db:5432/${POSTGRES_DB:-retailiq}
+      UPLOAD_DIR: /srv/data/uploads
+      PROCESSED_DIR: /srv/data/processed
+      SAMPLE_DIR: /srv/data/sample
+      MODEL_DIR: /srv/models
+      REPORT_DIR: /srv/reports
+      CORS_ORIGINS: http://localhost:8080
+    depends_on:
+      db: { condition: service_healthy }
+    volumes:
+      - appdata:/srv/data/uploads
+      - processed:/srv/data/processed
+      - models:/srv/models
+      - reports:/srv/reports
+    ports: ["8000:8000"]
+
+  frontend:
+    build: { context: ., dockerfile: frontend/Dockerfile }
+    restart: unless-stopped
+    depends_on: [backend]
+    ports: ["8080:80"]
+
+volumes:
+  pgdata:
+  appdata:
+  processed:
+  models:
+  reports:

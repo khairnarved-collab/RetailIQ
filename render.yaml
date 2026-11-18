@@ -1,0 +1,27 @@
+# Render Blueprint - one-click deployment of RetailIQ (web app + API in one container).
+# Render dashboard -> New -> Blueprint -> pick this repository.
+services:
+  - type: web
+    name: retailiq
+    runtime: docker
+    plan: free
+    dockerfilePath: ./Dockerfile
+    healthCheckPath: /api/health
+    autoDeploy: true
+    envVars:
+      - key: SECRET_KEY
+        generateValue: true          # Render creates a random secret; never commit one
+      - key: DATABASE_URL
+        sync: false                  # paste your PostgreSQL URL (e.g. Neon). Empty = temporary SQLite
+      - key: EXPOSE_RESET_TOKEN
+        value: "false"
+      - key: PROTECT_DEMO_ACCOUNTS
+        value: "true"
+      - key: SEED_DEMO_DATA
+        value: "true"
+      - key: WEB_CONCURRENCY
+        value: "1"
+      - key: MALLOC_ARENA_MAX
+        value: "2"
+      - key: LOG_LEVEL
+        value: INFO

@@ -1,0 +1,10 @@
+{
+  "synthetic": true,
+  "description": "SYNTHETIC demonstration data in M5 file format. Not real Walmart data.",
+  "generator": "backend/app/services/sample_data.py",
+  "seed": 42,
+  "start_date": "2024-11-01",
+  "days": 730,
+  "stores": 10,
+  "items": 30
+}

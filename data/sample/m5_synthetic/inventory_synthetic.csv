@@ -1,0 +1,301 @@
+store_id,item_id,on_hand,supplier,lead_time_days,unit_cost,service_level
+CA_1,FOODS_1_001,130,FreshFarm Distributors,3,1.97,0.95
+CA_2,FOODS_1_001,66,FreshFarm Distributors,3,1.96,0.95
+CA_3,FOODS_1_001,1022,FreshFarm Distributors,3,1.98,0.95
+CA_4,FOODS_1_001,61,FreshFarm Distributors,3,2.47,0.95
+TX_1,FOODS_1_001,158,FreshFarm Distributors,3,2.25,0.95
+TX_2,FOODS_1_001,175,FreshFarm Distributors,3,2.34,0.95
+TX_3,FOODS_1_001,46,FreshFarm Distributors,3,2.48,0.95
+WI_1,FOODS_1_001,720,FreshFarm Distributors,3,2.17,0.95
+WI_2,FOODS_1_001,80,FreshFarm Distributors,3,2.27,0.95
+WI_3,FOODS_1_001,124,FreshFarm Distributors,3,2.45,0.95
+CA_1,FOODS_1_002,51,FreshFarm Distributors,3,1.84,0.95
+CA_2,FOODS_1_002,85,FreshFarm Distributors,3,1.91,0.95
+CA_3,FOODS_1_002,30,FreshFarm Distributors,3,2.09,0.95
+CA_4,FOODS_1_002,127,FreshFarm Distributors,3,1.99,0.95
+TX_1,FOODS_1_002,77,FreshFarm Distributors,3,1.66,0.95
+TX_2,FOODS_1_002,468,FreshFarm Distributors,3,1.78,0.95
+TX_3,FOODS_1_002,19,FreshFarm Distributors,3,2.04,0.95
+WI_1,FOODS_1_002,139,FreshFarm Distributors,3,1.78,0.95
+WI_2,FOODS_1_002,511,FreshFarm Distributors,3,1.65,0.95
+WI_3,FOODS_1_002,258,FreshFarm Distributors,3,1.74,0.95
+CA_1,FOODS_1_003,131,FreshFarm Distributors,3,2.24,0.95
+CA_2,FOODS_1_003,68,FreshFarm Distributors,3,2.56,0.95
+CA_3,FOODS_1_003,31,FreshFarm Distributors,3,2.55,0.95
+CA_4,FOODS_1_003,13,FreshFarm Distributors,3,2.6,0.95
+TX_1,FOODS_1_003,91,FreshFarm Distributors,3,2.67,0.95
+TX_2,FOODS_1_003,101,FreshFarm Distributors,3,2.22,0.95
+TX_3,FOODS_1_003,82,FreshFarm Distributors,3,2.28,0.95
+WI_1,FOODS_1_003,651,FreshFarm Distributors,3,2.55,0.95
+WI_2,FOODS_1_003,66,FreshFarm Distributors,3,2.73,0.95
+WI_3,FOODS_1_003,82,FreshFarm Distributors,3,2.61,0.95
+CA_1,FOODS_1_004,65,FreshFarm Distributors,3,3.33,0.95
+CA_2,FOODS_1_004,210,FreshFarm Distributors,3,2.72,0.95
+CA_3,FOODS_1_004,232,FreshFarm Distributors,3,3.36,0.95
+CA_4,FOODS_1_004,125,FreshFarm Distributors,3,2.95,0.95
+TX_1,FOODS_1_004,92,FreshFarm Distributors,3,3.13,0.95
+TX_2,FOODS_1_004,44,FreshFarm Distributors,3,2.64,0.95
+TX_3,FOODS_1_004,105,FreshFarm Distributors,3,2.82,0.95
+WI_1,FOODS_1_004,72,FreshFarm Distributors,3,2.96,0.95
+WI_2,FOODS_1_004,195,FreshFarm Distributors,3,3.04,0.95
+WI_3,FOODS_1_004,23,FreshFarm Distributors,3,3.37,0.95
+CA_1,FOODS_2_001,21,Pantry Wholesale Inc.,7,4.77,0.95
+CA_2,FOODS_2_001,292,Pantry Wholesale Inc.,7,3.93,0.95
+CA_3,FOODS_2_001,20,Pantry Wholesale Inc.,7,4.6,0.95
+CA_4,FOODS_2_001,176,Pantry Wholesale Inc.,7,4.14,0.95
+TX_1,FOODS_2_001,53,Pantry Wholesale Inc.,7,4.85,0.95
+TX_2,FOODS_2_001,264,Pantry Wholesale Inc.,7,4.95,0.95
+TX_3,FOODS_2_001,55,Pantry Wholesale Inc.,7,4.71,0.95
+WI_1,FOODS_2_001,25,Pantry Wholesale Inc.,7,4.75,0.95
+WI_2,FOODS_2_001,11,Pantry Wholesale Inc.,7,4.05,0.95
+WI_3,FOODS_2_001,51,Pantry Wholesale Inc.,7,4.48,0.95
+CA_1,FOODS_2_002,67,Pantry Wholesale Inc.,7,0.86,0.95
+CA_2,FOODS_2_002,73,Pantry Wholesale Inc.,7,0.78,0.95
+CA_3,FOODS_2_002,39,Pantry Wholesale Inc.,7,0.9,0.95
+CA_4,FOODS_2_002,144,Pantry Wholesale Inc.,7,0.82,0.95
+TX_1,FOODS_2_002,100,Pantry Wholesale Inc.,7,0.74,0.95
+TX_2,FOODS_2_002,68,Pantry Wholesale Inc.,7,0.8,0.95
+TX_3,FOODS_2_002,117,Pantry Wholesale Inc.,7,0.84,0.95
+WI_1,FOODS_2_002,166,Pantry Wholesale Inc.,7,0.78,0.95
+WI_2,FOODS_2_002,186,Pantry Wholesale Inc.,7,0.84,0.95
+WI_3,FOODS_2_002,390,Pantry Wholesale Inc.,7,0.88,0.95
+CA_1,FOODS_2_003,38,Pantry Wholesale Inc.,7,3.74,0.95
+CA_2,FOODS_2_003,3,Pantry Wholesale Inc.,7,3.25,0.95
+CA_3,FOODS_2_003,20,Pantry Wholesale Inc.,7,3.66,0.95
+CA_4,FOODS_2_003,24,Pantry Wholesale Inc.,7,3.89,0.95
+TX_1,FOODS_2_003,3,Pantry Wholesale Inc.,7,3.82,0.95
+TX_2,FOODS_2_003,7,Pantry Wholesale Inc.,7,3.31,0.95
+TX_3,FOODS_2_003,13,Pantry Wholesale Inc.,7,3.56,0.95
+WI_1,FOODS_2_003,20,Pantry Wholesale Inc.,7,3.43,0.95
+WI_2,FOODS_2_003,161,Pantry Wholesale Inc.,7,3.27,0.95
+WI_3,FOODS_2_003,11,Pantry Wholesale Inc.,7,3.59,0.95
+CA_1,FOODS_2_004,153,Pantry Wholesale Inc.,7,0.65,0.95
+CA_2,FOODS_2_004,103,Pantry Wholesale Inc.,7,0.64,0.95
+CA_3,FOODS_2_004,62,Pantry Wholesale Inc.,7,0.56,0.95
+CA_4,FOODS_2_004,56,Pantry Wholesale Inc.,7,0.63,0.95
+TX_1,FOODS_2_004,95,Pantry Wholesale Inc.,7,0.61,0.95
+TX_2,FOODS_2_004,67,Pantry Wholesale Inc.,7,0.62,0.95
+TX_3,FOODS_2_004,29,Pantry Wholesale Inc.,7,0.68,0.95
+WI_1,FOODS_2_004,76,Pantry Wholesale Inc.,7,0.56,0.95
+WI_2,FOODS_2_004,151,Pantry Wholesale Inc.,7,0.67,0.95
+WI_3,FOODS_2_004,219,Pantry Wholesale Inc.,7,0.57,0.95
+CA_1,FOODS_3_001,87,FreshFarm Distributors,3,0.39,0.95
+CA_2,FOODS_3_001,1744,FreshFarm Distributors,3,0.42,0.95
+CA_3,FOODS_3_001,440,FreshFarm Distributors,3,0.4,0.95
+CA_4,FOODS_3_001,971,FreshFarm Distributors,3,0.35,0.95
+TX_1,FOODS_3_001,217,FreshFarm Distributors,3,0.34,0.95
+TX_2,FOODS_3_001,478,FreshFarm Distributors,3,0.4,0.95
+TX_3,FOODS_3_001,120,FreshFarm Distributors,3,0.36,0.95
+WI_1,FOODS_3_001,59,FreshFarm Distributors,3,0.34,0.95
+WI_2,FOODS_3_001,356,FreshFarm Distributors,3,0.36,0.95
+WI_3,FOODS_3_001,317,FreshFarm Distributors,3,0.35,0.95
+CA_1,FOODS_3_002,11,FreshFarm Distributors,3,2.12,0.95
+CA_2,FOODS_3_002,141,FreshFarm Distributors,3,2.22,0.95
+CA_3,FOODS_3_002,191,FreshFarm Distributors,3,2.19,0.95
+CA_4,FOODS_3_002,5,FreshFarm Distributors,3,1.81,0.95
+TX_1,FOODS_3_002,136,FreshFarm Distributors,3,2.1,0.95
+TX_2,FOODS_3_002,80,FreshFarm Distributors,3,2.15,0.95
+TX_3,FOODS_3_002,18,FreshFarm Distributors,3,2.09,0.95
+WI_1,FOODS_3_002,52,FreshFarm Distributors,3,1.89,0.95
+WI_2,FOODS_3_002,23,FreshFarm Distributors,3,1.98,0.95
+WI_3,FOODS_3_002,519,FreshFarm Distributors,3,2.01,0.95
+CA_1,FOODS_3_003,36,FreshFarm Distributors,3,4.69,0.95
+CA_2,FOODS_3_003,239,FreshFarm Distributors,3,4.99,0.95
+CA_3,FOODS_3_003,820,FreshFarm Distributors,3,4.91,0.95
+CA_4,FOODS_3_003,42,FreshFarm Distributors,3,4.9,0.95
+TX_1,FOODS_3_003,65,FreshFarm Distributors,3,4.95,0.95
+TX_2,FOODS_3_003,125,FreshFarm Distributors,3,4.38,0.95
+TX_3,FOODS_3_003,29,FreshFarm Distributors,3,5.35,0.95
+WI_1,FOODS_3_003,20,FreshFarm Distributors,3,5.57,0.95
+WI_2,FOODS_3_003,35,FreshFarm Distributors,3,5.36,0.95
+WI_3,FOODS_3_003,32,FreshFarm Distributors,3,5.6,0.95
+CA_1,FOODS_3_004,112,FreshFarm Distributors,3,6.22,0.95
+CA_2,FOODS_3_004,151,FreshFarm Distributors,3,5.0,0.95
+CA_3,FOODS_3_004,90,FreshFarm Distributors,3,6.22,0.95
+CA_4,FOODS_3_004,9,FreshFarm Distributors,3,5.53,0.95
+TX_1,FOODS_3_004,26,FreshFarm Distributors,3,5.66,0.95
+TX_2,FOODS_3_004,63,FreshFarm Distributors,3,5.98,0.95
+TX_3,FOODS_3_004,8,FreshFarm Distributors,3,6.09,0.95
+WI_1,FOODS_3_004,31,FreshFarm Distributors,3,4.94,0.95
+WI_2,FOODS_3_004,30,FreshFarm Distributors,3,5.74,0.95
+WI_3,FOODS_3_004,151,FreshFarm Distributors,3,6.43,0.95
+CA_1,FOODS_3_005,86,Metro Beverage Group,5,3.09,0.95
+CA_2,FOODS_3_005,74,Metro Beverage Group,5,2.95,0.95
+CA_3,FOODS_3_005,63,Metro Beverage Group,5,3.14,0.95
+CA_4,FOODS_3_005,223,Metro Beverage Group,5,3.44,0.95
+TX_1,FOODS_3_005,123,Metro Beverage Group,5,3.49,0.95
+TX_2,FOODS_3_005,138,Metro Beverage Group,5,3.22,0.95
+TX_3,FOODS_3_005,76,Metro Beverage Group,5,2.9,0.95
+WI_1,FOODS_3_005,104,Metro Beverage Group,5,3.32,0.95
+WI_2,FOODS_3_005,55,Metro Beverage Group,5,3.29,0.95
+WI_3,FOODS_3_005,95,Metro Beverage Group,5,3.25,0.95
+CA_1,FOODS_3_006,73,FreshFarm Distributors,3,2.35,0.95
+CA_2,FOODS_3_006,93,FreshFarm Distributors,3,2.3,0.95
+CA_3,FOODS_3_006,179,FreshFarm Distributors,3,2.78,0.95
+CA_4,FOODS_3_006,59,FreshFarm Distributors,3,2.59,0.95
+TX_1,FOODS_3_006,189,FreshFarm Distributors,3,2.8,0.95
+TX_2,FOODS_3_006,65,FreshFarm Distributors,3,2.8,0.95
+TX_3,FOODS_3_006,147,FreshFarm Distributors,3,2.66,0.95
+WI_1,FOODS_3_006,12,FreshFarm Distributors,3,2.28,0.95
+WI_2,FOODS_3_006,126,FreshFarm Distributors,3,2.23,0.95
+WI_3,FOODS_3_006,36,FreshFarm Distributors,3,2.64,0.95
+CA_1,HOUSEHOLD_1_001,17,HomeGoods Supply Co.,10,5.38,0.95
+CA_2,HOUSEHOLD_1_001,95,HomeGoods Supply Co.,10,5.66,0.95
+CA_3,HOUSEHOLD_1_001,9,HomeGoods Supply Co.,10,4.75,0.95
+CA_4,HOUSEHOLD_1_001,49,HomeGoods Supply Co.,10,4.9,0.95
+TX_1,HOUSEHOLD_1_001,88,HomeGoods Supply Co.,10,4.44,0.95
+TX_2,HOUSEHOLD_1_001,90,HomeGoods Supply Co.,10,5.36,0.95
+TX_3,HOUSEHOLD_1_001,42,HomeGoods Supply Co.,10,4.42,0.95
+WI_1,HOUSEHOLD_1_001,18,HomeGoods Supply Co.,10,5.54,0.95
+WI_2,HOUSEHOLD_1_001,264,HomeGoods Supply Co.,10,5.53,0.95
+WI_3,HOUSEHOLD_1_001,33,HomeGoods Supply Co.,10,4.66,0.95
+CA_1,HOUSEHOLD_1_002,18,HomeGoods Supply Co.,10,7.15,0.95
+CA_2,HOUSEHOLD_1_002,20,HomeGoods Supply Co.,10,8.5,0.95
+CA_3,HOUSEHOLD_1_002,9,HomeGoods Supply Co.,10,7.0,0.95
+CA_4,HOUSEHOLD_1_002,8,HomeGoods Supply Co.,10,7.6,0.95
+TX_1,HOUSEHOLD_1_002,8,HomeGoods Supply Co.,10,7.52,0.95
+TX_2,HOUSEHOLD_1_002,30,HomeGoods Supply Co.,10,7.79,0.95
+TX_3,HOUSEHOLD_1_002,56,HomeGoods Supply Co.,10,8.6,0.95
+WI_1,HOUSEHOLD_1_002,16,HomeGoods Supply Co.,10,8.12,0.95
+WI_2,HOUSEHOLD_1_002,23,HomeGoods Supply Co.,10,6.81,0.95
+WI_3,HOUSEHOLD_1_002,120,HomeGoods Supply Co.,10,7.69,0.95
+CA_1,HOUSEHOLD_1_003,64,HomeGoods Supply Co.,10,2.04,0.95
+CA_2,HOUSEHOLD_1_003,75,HomeGoods Supply Co.,10,1.67,0.95
+CA_3,HOUSEHOLD_1_003,29,HomeGoods Supply Co.,10,1.81,0.95
+CA_4,HOUSEHOLD_1_003,14,HomeGoods Supply Co.,10,1.84,0.95
+TX_1,HOUSEHOLD_1_003,49,HomeGoods Supply Co.,10,1.84,0.95
+TX_2,HOUSEHOLD_1_003,51,HomeGoods Supply Co.,10,1.98,0.95
+TX_3,HOUSEHOLD_1_003,23,HomeGoods Supply Co.,10,2.05,0.95
+WI_1,HOUSEHOLD_1_003,54,HomeGoods Supply Co.,10,1.71,0.95
+WI_2,HOUSEHOLD_1_003,54,HomeGoods Supply Co.,10,1.81,0.95
+WI_3,HOUSEHOLD_1_003,38,HomeGoods Supply Co.,10,2.12,0.95
+CA_1,HOUSEHOLD_1_004,80,HomeGoods Supply Co.,10,6.35,0.95
+CA_2,HOUSEHOLD_1_004,20,HomeGoods Supply Co.,10,6.52,0.95
+CA_3,HOUSEHOLD_1_004,16,HomeGoods Supply Co.,10,5.66,0.95
+CA_4,HOUSEHOLD_1_004,33,HomeGoods Supply Co.,10,5.26,0.95
+TX_1,HOUSEHOLD_1_004,89,HomeGoods Supply Co.,10,5.99,0.95
+TX_2,HOUSEHOLD_1_004,37,HomeGoods Supply Co.,10,6.04,0.95
+TX_3,HOUSEHOLD_1_004,9,HomeGoods Supply Co.,10,5.44,0.95
+WI_1,HOUSEHOLD_1_004,3,HomeGoods Supply Co.,10,5.53,0.95
+WI_2,HOUSEHOLD_1_004,42,HomeGoods Supply Co.,10,6.64,0.95
+WI_3,HOUSEHOLD_1_004,27,HomeGoods Supply Co.,10,6.41,0.95
+CA_1,HOUSEHOLD_2_001,9,HomeGoods Supply Co.,10,4.97,0.95
+CA_2,HOUSEHOLD_2_001,14,HomeGoods Supply Co.,10,5.93,0.95
+CA_3,HOUSEHOLD_2_001,22,HomeGoods Supply Co.,10,5.61,0.95
+CA_4,HOUSEHOLD_2_001,8,HomeGoods Supply Co.,10,5.03,0.95
+TX_1,HOUSEHOLD_2_001,16,HomeGoods Supply Co.,10,5.25,0.95
+TX_2,HOUSEHOLD_2_001,13,HomeGoods Supply Co.,10,5.54,0.95
+TX_3,HOUSEHOLD_2_001,12,HomeGoods Supply Co.,10,6.08,0.95
+WI_1,HOUSEHOLD_2_001,22,HomeGoods Supply Co.,10,5.51,0.95
+WI_2,HOUSEHOLD_2_001,30,HomeGoods Supply Co.,10,5.77,0.95
+WI_3,HOUSEHOLD_2_001,119,HomeGoods Supply Co.,10,5.58,0.95
+CA_1,HOUSEHOLD_2_002,7,HomeGoods Supply Co.,10,10.42,0.95
+CA_2,HOUSEHOLD_2_002,19,HomeGoods Supply Co.,10,10.28,0.95
+CA_3,HOUSEHOLD_2_002,11,HomeGoods Supply Co.,10,10.06,0.95
+CA_4,HOUSEHOLD_2_002,34,HomeGoods Supply Co.,10,10.3,0.95
+TX_1,HOUSEHOLD_2_002,12,HomeGoods Supply Co.,10,9.39,0.95
+TX_2,HOUSEHOLD_2_002,12,HomeGoods Supply Co.,10,9.06,0.95
+TX_3,HOUSEHOLD_2_002,1,HomeGoods Supply Co.,10,9.65,0.95
+WI_1,HOUSEHOLD_2_002,124,HomeGoods Supply Co.,10,9.09,0.95
+WI_2,HOUSEHOLD_2_002,12,HomeGoods Supply Co.,10,8.56,0.95
+WI_3,HOUSEHOLD_2_002,9,HomeGoods Supply Co.,10,10.49,0.95
+CA_1,HOUSEHOLD_2_003,10,HomeGoods Supply Co.,10,6.62,0.95
+CA_2,HOUSEHOLD_2_003,12,HomeGoods Supply Co.,10,5.67,0.95
+CA_3,HOUSEHOLD_2_003,6,HomeGoods Supply Co.,10,6.97,0.95
+CA_4,HOUSEHOLD_2_003,1,HomeGoods Supply Co.,10,5.94,0.95
+TX_1,HOUSEHOLD_2_003,4,HomeGoods Supply Co.,10,6.17,0.95
+TX_2,HOUSEHOLD_2_003,3,HomeGoods Supply Co.,10,5.76,0.95
+TX_3,HOUSEHOLD_2_003,6,HomeGoods Supply Co.,10,6.53,0.95
+WI_1,HOUSEHOLD_2_003,2,HomeGoods Supply Co.,10,6.16,0.95
+WI_2,HOUSEHOLD_2_003,14,HomeGoods Supply Co.,10,5.58,0.95
+WI_3,HOUSEHOLD_2_003,32,HomeGoods Supply Co.,10,7.14,0.95
+CA_1,HOUSEHOLD_2_004,77,HomeGoods Supply Co.,10,2.46,0.95
+CA_2,HOUSEHOLD_2_004,9,HomeGoods Supply Co.,10,2.34,0.95
+CA_3,HOUSEHOLD_2_004,23,HomeGoods Supply Co.,10,2.14,0.95
+CA_4,HOUSEHOLD_2_004,16,HomeGoods Supply Co.,10,2.47,0.95
+TX_1,HOUSEHOLD_2_004,13,HomeGoods Supply Co.,10,2.42,0.95
+TX_2,HOUSEHOLD_2_004,40,HomeGoods Supply Co.,10,2.38,0.95
+TX_3,HOUSEHOLD_2_004,28,HomeGoods Supply Co.,10,2.33,0.95
+WI_1,HOUSEHOLD_2_004,21,HomeGoods Supply Co.,10,2.38,0.95
+WI_2,HOUSEHOLD_2_004,60,HomeGoods Supply Co.,10,2.49,0.95
+WI_3,HOUSEHOLD_2_004,80,HomeGoods Supply Co.,10,2.03,0.95
+CA_1,HOBBIES_1_001,52,CraftWorld Trading,14,9.11,0.95
+CA_2,HOBBIES_1_001,193,CraftWorld Trading,14,8.07,0.95
+CA_3,HOBBIES_1_001,9,CraftWorld Trading,14,8.35,0.95
+CA_4,HOBBIES_1_001,2,CraftWorld Trading,14,7.18,0.95
+TX_1,HOBBIES_1_001,20,CraftWorld Trading,14,7.5,0.95
+TX_2,HOBBIES_1_001,16,CraftWorld Trading,14,9.1,0.95
+TX_3,HOBBIES_1_001,150,CraftWorld Trading,14,8.8,0.95
+WI_1,HOBBIES_1_001,6,CraftWorld Trading,14,7.28,0.95
+WI_2,HOBBIES_1_001,33,CraftWorld Trading,14,7.35,0.95
+WI_3,HOBBIES_1_001,4,CraftWorld Trading,14,9.17,0.95
+CA_1,HOBBIES_1_002,50,CraftWorld Trading,14,7.17,0.95
+CA_2,HOBBIES_1_002,8,CraftWorld Trading,14,7.27,0.95
+CA_3,HOBBIES_1_002,79,CraftWorld Trading,14,6.87,0.95
+CA_4,HOBBIES_1_002,9,CraftWorld Trading,14,7.96,0.95
+TX_1,HOBBIES_1_002,20,CraftWorld Trading,14,7.55,0.95
+TX_2,HOBBIES_1_002,7,CraftWorld Trading,14,8.19,0.95
+TX_3,HOBBIES_1_002,4,CraftWorld Trading,14,6.72,0.95
+WI_1,HOBBIES_1_002,18,CraftWorld Trading,14,8.0,0.95
+WI_2,HOBBIES_1_002,150,CraftWorld Trading,14,7.76,0.95
+WI_3,HOBBIES_1_002,9,CraftWorld Trading,14,6.56,0.95
+CA_1,HOBBIES_1_003,5,CraftWorld Trading,14,13.75,0.95
+CA_2,HOBBIES_1_003,12,CraftWorld Trading,14,11.77,0.95
+CA_3,HOBBIES_1_003,9,CraftWorld Trading,14,13.83,0.95
+CA_4,HOBBIES_1_003,5,CraftWorld Trading,14,11.42,0.95
+TX_1,HOBBIES_1_003,5,CraftWorld Trading,14,12.79,0.95
+TX_2,HOBBIES_1_003,15,CraftWorld Trading,14,12.62,0.95
+TX_3,HOBBIES_1_003,4,CraftWorld Trading,14,13.57,0.95
+WI_1,HOBBIES_1_003,22,CraftWorld Trading,14,14.01,0.95
+WI_2,HOBBIES_1_003,5,CraftWorld Trading,14,13.58,0.95
+WI_3,HOBBIES_1_003,7,CraftWorld Trading,14,13.58,0.95
+CA_1,HOBBIES_1_004,14,CraftWorld Trading,14,5.1,0.95
+CA_2,HOBBIES_1_004,3,CraftWorld Trading,14,5.6,0.95
+CA_3,HOBBIES_1_004,17,CraftWorld Trading,14,4.75,0.95
+CA_4,HOBBIES_1_004,11,CraftWorld Trading,14,4.88,0.95
+TX_1,HOBBIES_1_004,1,CraftWorld Trading,14,5.58,0.95
+TX_2,HOBBIES_1_004,4,CraftWorld Trading,14,4.53,0.95
+TX_3,HOBBIES_1_004,1,CraftWorld Trading,14,5.36,0.95
+WI_1,HOBBIES_1_004,3,CraftWorld Trading,14,4.68,0.95
+WI_2,HOBBIES_1_004,2,CraftWorld Trading,14,4.55,0.95
+WI_3,HOBBIES_1_004,27,CraftWorld Trading,14,5.61,0.95
+CA_1,HOBBIES_2_001,6,CraftWorld Trading,14,5.99,0.95
+CA_2,HOBBIES_2_001,5,CraftWorld Trading,14,6.66,0.95
+CA_3,HOBBIES_2_001,8,CraftWorld Trading,14,6.86,0.95
+CA_4,HOBBIES_2_001,1,CraftWorld Trading,14,5.74,0.95
+TX_1,HOBBIES_2_001,1,CraftWorld Trading,14,6.59,0.95
+TX_2,HOBBIES_2_001,12,CraftWorld Trading,14,5.63,0.95
+TX_3,HOBBIES_2_001,10,CraftWorld Trading,14,6.41,0.95
+WI_1,HOBBIES_2_001,7,CraftWorld Trading,14,6.69,0.95
+WI_2,HOBBIES_2_001,3,CraftWorld Trading,14,6.71,0.95
+WI_3,HOBBIES_2_001,24,CraftWorld Trading,14,6.48,0.95
+CA_1,HOBBIES_2_002,10,CraftWorld Trading,14,17.48,0.95
+CA_2,HOBBIES_2_002,2,CraftWorld Trading,14,17.26,0.95
+CA_3,HOBBIES_2_002,8,CraftWorld Trading,14,14.56,0.95
+CA_4,HOBBIES_2_002,5,CraftWorld Trading,14,15.69,0.95
+TX_1,HOBBIES_2_002,3,CraftWorld Trading,14,17.77,0.95
+TX_2,HOBBIES_2_002,1,CraftWorld Trading,14,16.36,0.95
+TX_3,HOBBIES_2_002,1,CraftWorld Trading,14,14.98,0.95
+WI_1,HOBBIES_2_002,6,CraftWorld Trading,14,17.66,0.95
+WI_2,HOBBIES_2_002,4,CraftWorld Trading,14,14.31,0.95
+WI_3,HOBBIES_2_002,8,CraftWorld Trading,14,14.6,0.95
+CA_1,HOBBIES_2_003,141,CraftWorld Trading,14,3.46,0.95
+CA_2,HOBBIES_2_003,68,CraftWorld Trading,14,3.7,0.95
+CA_3,HOBBIES_2_003,85,CraftWorld Trading,14,4.21,0.95
+CA_4,HOBBIES_2_003,12,CraftWorld Trading,14,3.94,0.95
+TX_1,HOBBIES_2_003,14,CraftWorld Trading,14,3.9,0.95
+TX_2,HOBBIES_2_003,4,CraftWorld Trading,14,4.06,0.95
+TX_3,HOBBIES_2_003,24,CraftWorld Trading,14,3.71,0.95
+WI_1,HOBBIES_2_003,14,CraftWorld Trading,14,4.15,0.95
+WI_2,HOBBIES_2_003,2,CraftWorld Trading,14,3.3,0.95
+WI_3,HOBBIES_2_003,10,CraftWorld Trading,14,3.5,0.95
+CA_1,HOBBIES_2_004,32,CraftWorld Trading,14,2.74,0.95
+CA_2,HOBBIES_2_004,10,CraftWorld Trading,14,2.94,0.95
+CA_3,HOBBIES_2_004,148,CraftWorld Trading,14,3.02,0.95
+CA_4,HOBBIES_2_004,35,CraftWorld Trading,14,3.06,0.95
+TX_1,HOBBIES_2_004,8,CraftWorld Trading,14,2.64,0.95
+TX_2,HOBBIES_2_004,7,CraftWorld Trading,14,2.79,0.95
+TX_3,HOBBIES_2_004,6,CraftWorld Trading,14,2.94,0.95
+WI_1,HOBBIES_2_004,4,CraftWorld Trading,14,2.79,0.95
+WI_2,HOBBIES_2_004,1,CraftWorld Trading,14,2.67,0.95
+WI_3,HOBBIES_2_004,42,CraftWorld Trading,14,2.7,0.95
