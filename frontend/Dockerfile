@@ -1,5 +1,5 @@
 # RetailIQ web app: build with Node, serve with nginx (which also proxies /api to the backend)
-FROM node:20-alpine AS build
+FROM node:22-slim AS build
 WORKDIR /app
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci --no-audit --no-fund

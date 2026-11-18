@@ -1,6 +1,6 @@
 # Single-container image (frontend + API in one service) for PaaS hosts such as
 # Render, Railway or Fly.io. Point DATABASE_URL at a managed PostgreSQL database.
-FROM node:20-alpine AS web
+FROM node:22-slim AS web
 WORKDIR /app
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci --no-audit --no-fund
