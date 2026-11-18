@@ -19,6 +19,7 @@ from sqlalchemy import select
 from sqlalchemy.orm import Session
 
 from app.analytics import sales as sa
+from app.core.money import load_currency, money, money_symbol
 from app.models import Dataset, ForecastRun
 
 REPORT_TYPES = {
@@ -50,7 +51,7 @@ class ReportData:
 
 
 def _m(v) -> str:
-    return "n/a" if v is None else (f"-${abs(v):,.0f}" if v < 0 else f"${v:,.0f}")
+    return "n/a" if v is None else (f"-{money(abs(v))}" if v < 0 else f"{money(v)}")
 
 
 def _pct(v) -> str:
@@ -70,25 +71,25 @@ def _period_report(db: Session, title: str, start: date, end: date, chart_daily:
     rd = ReportData(title=title, period=f"{start:%d %b %Y} – {end:%d %b %Y}")
     rd.kpis = [("Revenue", _m(k["total_revenue"])), ("Revenue growth", _pct(k["revenue_growth_pct"])),
                ("Sales transactions", f"{k['total_orders']:,}"), ("Units sold", f"{k['units_sold']:,}"),
-               ("Avg. transaction value", f"${k['avg_order_value']:.2f}"), ("Products sold", str(k["total_products"])),
+               ("Avg. transaction value", f"{money(k['avg_order_value'], 2)}"), ("Products sold", str(k["total_products"])),
                ("Stores", str(k["num_stores"])),
                ("Forecast next 30 days", _m(k["forecasted_revenue_30d"]))]
     ts = sa.revenue_over_time(db, f)["points"]
     if ts and chart_daily:
         rd.sections.append(Section("Revenue over time", chart={
-            "kind": "line", "x": [p["date"] for p in ts], "series": {"Revenue": [p["revenue"] for p in ts]}, "ylabel": "Revenue ($)"}))
+            "kind": "line", "x": [p["date"] for p in ts], "series": {"Revenue": [p["revenue"] for p in ts]}, "ylabel": f"Revenue ({money_symbol()})"}))
     cats = pd.DataFrame(sa.by_category(db, f))
     if not cats.empty:
         rd.sections.append(Section("Revenue by category", table=cats.rename(columns={
             "category": "Category", "revenue": "Revenue", "units": "Units", "share_pct": "Share %"}),
-            chart={"kind": "bar", "x": cats.category.tolist(), "series": {"Revenue": cats.revenue.tolist()}, "ylabel": "Revenue ($)"}))
+            chart={"kind": "bar", "x": cats.category.tolist(), "series": {"Revenue": cats.revenue.tolist()}, "ylabel": f"Revenue ({money_symbol()})"}))
     perf = sa.product_performance(db, f)
     if not perf.empty:
         cols = {"sku": "SKU", "name": "Product", "category": "Category", "revenue": "Revenue", "units": "Units",
                 "change_pct": "Change %"}
         top = perf.head(10)[list(cols)].rename(columns=cols)
         rd.sections.append(Section("Top 10 products", table=top.round(2), chart={
-            "kind": "barh", "x": top.Product.tolist()[::-1], "series": {"Revenue": top.Revenue.tolist()[::-1]}, "ylabel": "Revenue ($)"}))
+            "kind": "barh", "x": top.Product.tolist()[::-1], "series": {"Revenue": top.Revenue.tolist()[::-1]}, "ylabel": f"Revenue ({money_symbol()})"}))
         rd.sections.append(Section("Lowest-revenue products", table=perf.tail(10).sort_values("revenue")[list(cols)].rename(columns=cols).round(2)))
     stores = pd.DataFrame(sa.store_performance(db, f))
     if not stores.empty:
@@ -117,6 +118,7 @@ def _period_report(db: Session, title: str, start: date, end: date, chart_daily:
 
 def build(db: Session, report_type: str, start: date | None = None, end: date | None = None,
           run_id: int | None = None) -> ReportData:
+    load_currency(db)
     lo, hi = sa.data_bounds(db)
     if hi is None:
         raise ValueError("No sales data available")
@@ -144,7 +146,7 @@ def build(db: Session, report_type: str, start: date | None = None, end: date | 
         table = perf[list(cols)].rename(columns=cols).round(2)
         rd.sections.append(Section("All products", table=table, chart={
             "kind": "barh", "x": table.Product.head(12).tolist()[::-1], "series": {"Revenue": table.Revenue.head(12).tolist()[::-1]},
-            "ylabel": "Revenue ($)"}))
+            "ylabel": f"Revenue ({money_symbol()})"}))
         top3 = perf.head(3)
         rd.findings.append("Top products: " + ", ".join(f"{r.name} ({_m(r.revenue)})" for r in top3.itertuples()) + ".")
         share = perf.head(max(1, len(perf) // 5)).revenue.sum() / perf.revenue.sum() * 100

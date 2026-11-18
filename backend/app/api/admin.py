@@ -86,3 +86,23 @@ def write_settings(section: str, body: SettingsUpdate, admin: User = Depends(req
         raise HTTPException(404, f"Unknown settings section '{section}'") from None
     except ValueError as e:
         raise HTTPException(422, str(e)) from None
+
+
+# ---------------------------------------------------------------- demo data
+@router.get("/demo-data")
+def demo_data_status(_: User = Depends(require_admin), db: Session = Depends(get_db)):
+    from app.services import demo_data
+    return demo_data.status(db)
+
+
+@router.post("/demo-data/remove")
+def demo_data_remove(_: User = Depends(require_admin), db: Session = Depends(get_db)):
+    """Delete the SYNTHETIC demo data only; uploaded data is kept."""
+    from app.services import demo_data
+    return demo_data.remove(db)
+
+
+@router.post("/demo-data/restore")
+def demo_data_restore(admin: User = Depends(require_admin), db: Session = Depends(get_db)):
+    from app.services import demo_data
+    return demo_data.restore(db, admin.id)

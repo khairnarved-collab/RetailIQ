@@ -19,6 +19,7 @@ import pandas as pd
 from sqlalchemy import select
 from sqlalchemy.orm import Session
 
+from app.core.money import load_currency, money
 from app.models import CalendarDay, Category, Dataset, Product, Sale, Store
 from app.services.data_quality import read_table
 
@@ -221,7 +222,7 @@ def findings(df: pd.DataFrame, source: str, db: Session | None = None) -> list[d
         if ch is not None:
             out.append({"type": "trend", "text": f"Revenue in the last 30 days (to {hi:%d %b %Y}) was "
                         f"{'up' if ch >= 0 else 'down'} {abs(ch):.1f}% compared with the previous 30 days "
-                        f"(${cur['revenue']:,.0f} vs ${prev['revenue']:,.0f})."})
+                        f"({money(cur['revenue'])} vs {money(prev['revenue'])})."})
         cats = sa.by_category(db, sa.Filters(hi - pd.Timedelta(days=29), hi))
         if cats:
             out.append({"type": "composition", "text": f"{cats[0]['category'].title()} contributed the largest share "
@@ -266,6 +267,7 @@ def findings(df: pd.DataFrame, source: str, db: Session | None = None) -> list[d
 
 
 def summary(db: Session, source: str) -> dict:
+    load_currency(db)
     df, meta = load_source(db, source)
     return {"meta": meta, "columns": [{"name": c, "numeric": c in _num_cols(df), "dtype": str(df[c].dtype)} for c in df.columns],
             "describe": describe(df), "correlation": correlation(df), "missing": missing(df), "outliers": outliers(df),

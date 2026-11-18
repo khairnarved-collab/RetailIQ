@@ -22,6 +22,7 @@ from app.models import (
     CustomerSegment,
     CustomerTransaction,
     Dataset,
+    InventoryItem,
     Price,
     Product,
     Sale,
@@ -172,4 +173,27 @@ def import_sales_long(db: Session, ds: Dataset, df: pd.DataFrame) -> tuple[int, 
     zero = int((df["units"] == 0).sum())
     if zero:
         notes.append(f"{zero} row(s) with 0 units were not stored (zero days are implicit).")
+
+    # Inventory: uploaded sales files contain no stock levels. Create an inventory record for every
+    # new store x product so the Inventory module works, with an explicitly ASSUMED stock of
+    # 14 days of recent demand (flagged "assumed" in the UI until the user enters real counts).
+    db.flush()
+    existing = set(db.execute(select(InventoryItem.store_id, InventoryItem.product_id)).all())
+    last = df["date"].max()
+    recent = df[df["date"] > last - pd.Timedelta(days=28)] if hasattr(last, "year") else df
+    avg = recent.groupby(["store_id", "product_id"])["units"].sum() / 28
+    last_price = df.dropna(subset=["price"]).sort_values("date").groupby(["store_id", "product_id"])["price"].last()
+    new_inv = []
+    for (sid, pid) in df[["store_id", "product_id"]].drop_duplicates().itertuples(index=False, name=None):
+        if (sid, pid) in existing:
+            continue
+        lp = last_price.get((sid, pid))
+        new_inv.append({"store_id": int(sid), "product_id": int(pid), "on_hand": int(round(float(avg.get((sid, pid), 0)) * 14)),
+                        "on_hand_source": "assumed", "lead_time_days": 7, "review_period_days": 7, "service_level": 0.95,
+                        "min_order_qty": 1, "pack_size": 1, "unit_cost": None if lp is None or pd.isna(lp) else round(float(lp) * 0.7, 2),
+                        "order_cost": 25.0, "holding_cost_rate": 0.25, "replenishment_policy": "order_up_to"})
+    if new_inv:
+        db.execute(insert(InventoryItem), new_inv)
+        notes.append(f"Created {len(new_inv)} inventory records with ASSUMED stock (14 days of recent demand). "
+                     "Enter real stock counts in Inventory.")
     return len(records), notes

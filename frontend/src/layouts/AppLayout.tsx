@@ -12,6 +12,8 @@ import { Logo } from "@/components/Logo";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import { NotificationsBell } from "@/components/NotificationsBell";
 import { useAuth } from "@/hooks/useAuth";
+import { useApiQuery } from "@/hooks/useApi";
+import { setCurrencyCode, currencyCode } from "@/utils/format";
 import { cn } from "@/lib/utils";
 
 interface NavItem { to: string; label: string; icon: ReactNode; admin?: boolean }
@@ -76,6 +78,9 @@ export default function AppLayout() {
   const [open, setOpen] = useState(false);
   const navigate = useNavigate();
   const loc = useLocation();
+  // Apply the currency chosen in Settings before any page renders numbers
+  const { data: appSettings } = useApiQuery<Record<string, Record<string, string | number>>>(["settings"], "/admin/settings", { staleTime: 5 * 60_000 });
+  setCurrencyCode(appSettings?.general?.currency as string | undefined);
   const title = NAV.flatMap((g) => g.items).find((i) => loc.pathname.startsWith(i.to))?.label ?? "RetailIQ";
 
   return (
@@ -125,7 +130,7 @@ export default function AppLayout() {
           </div>
         </header>
         <main className="mx-auto w-full max-w-[1500px] flex-1 px-3 py-5 safe-bottom sm:px-5 lg:px-8 lg:py-7">
-          <Outlet />
+          <Outlet key={currencyCode()} />
         </main>
       </div>
     </div>

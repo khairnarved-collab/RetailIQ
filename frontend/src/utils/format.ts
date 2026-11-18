@@ -1,13 +1,41 @@
-/** Number / date formatting helpers used everywhere in the UI. */
-const usd0 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 0 });
-const usd2 = new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", maximumFractionDigits: 2 });
-const num = new Intl.NumberFormat("en-US", { maximumFractionDigits: 1 });
-const compact = new Intl.NumberFormat("en-US", { notation: "compact", maximumFractionDigits: 1 });
+/**
+ * Number / date formatting helpers used everywhere in the UI.
+ *
+ * The currency comes from the admin setting (Settings -> General -> Currency) and is applied
+ * with setCurrencyCode(). INR uses the Indian numbering system (₹1,23,45,678 and 1.2Cr / 3.4L).
+ */
+let currency = "USD";
+let locale = "en-US";
+let money0 = new Intl.NumberFormat(locale, { style: "currency", currency, maximumFractionDigits: 0 });
+let money2 = new Intl.NumberFormat(locale, { style: "currency", currency, maximumFractionDigits: 2 });
+let num = new Intl.NumberFormat(locale, { maximumFractionDigits: 1 });
+let compact = new Intl.NumberFormat(locale, { notation: "compact", maximumFractionDigits: 1 });
+let symbol = "$";
+
+export function setCurrencyCode(code: string | undefined | null) {
+  const next = (code || "USD").toUpperCase();
+  if (next === currency) return;
+  try {
+    const loc = next === "INR" ? "en-IN" : "en-US";
+    const m0 = new Intl.NumberFormat(loc, { style: "currency", currency: next, maximumFractionDigits: 0 });
+    currency = next;
+    locale = loc;
+    money0 = m0;
+    money2 = new Intl.NumberFormat(loc, { style: "currency", currency: next, maximumFractionDigits: 2 });
+    num = new Intl.NumberFormat(loc, { maximumFractionDigits: 1 });
+    compact = new Intl.NumberFormat(loc, { notation: "compact", maximumFractionDigits: 1 });
+    symbol = m0.formatToParts(0).find((p) => p.type === "currency")?.value ?? next;
+  } catch {
+    /* unknown currency code - keep the previous one */
+  }
+}
+export const currencyCode = () => currency;
+export const currencySymbol = () => symbol;
 
 export const fmtMoney = (v?: number | null, decimals = false) =>
-  v === null || v === undefined || Number.isNaN(v) ? "–" : (decimals ? usd2 : usd0).format(v);
+  v === null || v === undefined || Number.isNaN(v) ? "–" : (decimals ? money2 : money0).format(v);
 export const fmtMoneyCompact = (v?: number | null) =>
-  v === null || v === undefined ? "–" : "$" + compact.format(v);
+  v === null || v === undefined ? "–" : symbol + compact.format(v);
 export const fmtNum = (v?: number | null) => (v === null || v === undefined || Number.isNaN(v) ? "–" : num.format(v));
 export const fmtCompact = (v?: number | null) => (v === null || v === undefined ? "–" : compact.format(v));
 export const fmtPct = (v?: number | null, signed = true) =>

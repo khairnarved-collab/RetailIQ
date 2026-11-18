@@ -14,7 +14,7 @@ import { EmptyState, ErrorState, LoadingState, PageHeader, SimpleTable, StatusBa
 import { useApiMutation, useApiQuery, useFilterOptions } from "@/hooks/useApi";
 import { api, downloadFile, qs } from "@/services/api";
 import type { InventoryItem, InventoryResponse, InvStatus } from "@/services/types";
-import { fmtMoney, fmtNum } from "@/utils/format";
+import { currencySymbol, fmtMoney, fmtNum } from "@/utils/format";
 import { cn } from "@/lib/utils";
 
 const STATUSES: InvStatus[] = ["Critical", "Low Stock", "Overstocked", "Healthy"];
@@ -162,7 +162,7 @@ function EditDialog({ item, onClose }: { item: InventoryItem; onClose: () => voi
           {field("service_level", "Service level (%)", "e.g. 95 = 95% no stock-out", "0.1")}
           {field("min_order_qty", "Minimum order qty")}
           {field("pack_size", "Pack size", "Orders round up to this")}
-          {field("unit_cost", "Unit cost ($)", undefined, "0.01")}
+          {field("unit_cost", `Unit cost (${currencySymbol()})`, undefined, "0.01")}
           <div className="space-y-1.5"><Label className="text-xs">Supplier</Label>
             <Select value={f.supplier_id} onValueChange={(v) => setF({ ...f, supplier_id: v })}><SelectTrigger><SelectValue /></SelectTrigger>
               <SelectContent><SelectItem value="none">None</SelectItem>{suppliers.map((s) => <SelectItem key={s.id} value={String(s.id)}>{s.name}</SelectItem>)}</SelectContent></Select></div>

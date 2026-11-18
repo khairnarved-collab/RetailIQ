@@ -21,6 +21,7 @@ from sqlalchemy import func, select
 from sqlalchemy.orm import Session
 
 from app.analytics import sales as sa
+from app.core.money import load_currency, money
 from app.inventory.optimizer import positions
 from app.models import CalendarDay, Sale
 
@@ -46,6 +47,7 @@ def _avg_price(db: Session, product_id: int, f: sa.Filters) -> float | None:
 
 
 def generate(db: Session) -> dict:
+    load_currency(db)
     lo, hi = sa.data_bounds(db)
     if hi is None:
         return {"generated_for": None, "insights": [], "counts": {}}
@@ -60,7 +62,7 @@ def generate(db: Session) -> dict:
         out.append(_insight(
             "trend", "positive" if ch > 3 else "warning" if ch < -3 else "info",
             f"Revenue {'up' if ch >= 0 else 'down'} {abs(ch):.1f}% over the last {WINDOW} days",
-            f"Revenue was ${tc['revenue']:,.0f} in {period} vs ${tp['revenue']:,.0f} in the previous {WINDOW} days.",
+            f"Revenue was {money(tc['revenue'])} in {period} vs {money(tp['revenue'])} in the previous {WINDOW} days.",
             "Review the product and store breakdown below to see which items drive the change.",
             {"current": round(tc["revenue"], 2), "previous": round(tp["revenue"], 2), "change_pct": ch}, link="/app/dashboard"))
 
@@ -82,7 +84,7 @@ def generate(db: Session) -> dict:
             p_now, p_before = _avg_price(db, r.product_id, cur), _avg_price(db, r.product_id, prev)
             if p_now and p_before and p_now > p_before * 1.03:
                 causes.append(f"Data: the average selling price rose {((p_now / p_before) - 1) * 100:.1f}% "
-                              f"(${p_before:.2f} → ${p_now:.2f}) over the same period.")
+                              f"({money(p_before, 2)} → {money(p_now, 2)}) over the same period.")
             if critical_by_product.get(r.product_id):
                 causes.append(f"Data: {critical_by_product[r.product_id]} store(s) currently hold low or critical stock "
                               "of this product, so availability may be limiting sales.")
@@ -91,7 +93,7 @@ def generate(db: Session) -> dict:
             out.append(_insight(
                 "decline", "critical" if r.change_pct <= -30 else "warning",
                 f"{r.name} sales fell {abs(r.change_pct):.0f}%",
-                f"{r.name} ({r.sku}) generated ${r.revenue:,.0f} in the last {WINDOW} days vs ${r.prev_revenue:,.0f} "
+                f"{r.name} ({r.sku}) generated {money(r.revenue)} in the last {WINDOW} days vs {money(r.prev_revenue)} "
                 f"in the previous {WINDOW} days ({r.change_pct:+.1f}%).",
                 "Review its pricing, availability and promotional activity; forecast its demand before the next order.",
                 {"product_id": int(r.product_id), "change_pct": round(float(r.change_pct), 2),
@@ -102,7 +104,7 @@ def generate(db: Session) -> dict:
                 continue
             out.append(_insight(
                 "growth", "positive", f"{r.name} is growing {r.change_pct:.0f}%",
-                f"{r.name} revenue rose from ${r.prev_revenue:,.0f} to ${r.revenue:,.0f} ({r.change_pct:+.1f}%) "
+                f"{r.name} revenue rose from {money(r.prev_revenue)} to {money(r.revenue)} ({r.change_pct:+.1f}%) "
                 f"over the last {WINDOW} days.",
                 "Growth opportunity: make sure stock keeps up with demand and consider featuring it in promotions.",
                 {"product_id": int(r.product_id), "change_pct": round(float(r.change_pct), 2)},
@@ -124,7 +126,7 @@ def generate(db: Session) -> dict:
             out.append(_insight(
                 "anomaly", "info" if ev else "warning",
                 f"Unusual {'spike' if zv > 0 else 'drop'} in revenue on {d:%a %d %b %Y}",
-                f"Revenue was ${daily[d]:,.0f} vs a typical ${med[d]:,.0f} for that period (robust z-score {zv:+.1f}).",
+                f"Revenue was {money(daily[d])} vs a typical {money(med[d])} for that period (robust z-score {zv:+.1f}).",
                 "Check for data errors, store closures, promotions or local events on that day.",
                 {"date": d.date().isoformat(), "revenue": round(float(daily[d]), 2), "baseline": round(float(med[d]), 2)},
                 ([f"Data: this date is a calendar event ({ev})."] if ev else [])
@@ -138,7 +140,7 @@ def generate(db: Session) -> dict:
         best = max(cats_now.values(), key=lambda c: c["revenue"])
         out.append(_insight(
             "category", "positive", f"{best['category'].title()} is the top category ({best['share_pct']:.0f}% of revenue)",
-            f"{best['category'].title()} generated ${best['revenue']:,.0f} in the last {WINDOW} days"
+            f"{best['category'].title()} generated {money(best['revenue'])} in the last {WINDOW} days"
             + (f", {growth[best['category']]:+.1f}% vs the previous period." if growth[best['category']] is not None else "."),
             "Protect availability in this category: it carries the largest share of revenue.",
             {"category_growth_pct": growth}, link="/app/dashboard"))
@@ -159,7 +161,7 @@ def generate(db: Session) -> dict:
                 continue
             out.append(_insight(
                 "store", "warning", f"Store {s['code']} ({s['name']}) is underperforming",
-                f"{s['code']} averages ${s['revenue_per_day']:,.0f}/day vs a store median of ${med_rpd:,.0f}/day"
+                f"{s['code']} averages {money(s['revenue_per_day'])}/day vs a store median of {money(med_rpd)}/day"
                 + (f"; revenue changed {s['growth_pct']:+.1f}% vs the previous {WINDOW} days." if s["growth_pct"] is not None else "."),
                 "Compare its product mix, stock availability and staffing with the best stores.",
                 {"store_id": s["store_id"], "revenue_per_day": s["revenue_per_day"], "growth_pct": s["growth_pct"]},
@@ -177,7 +179,7 @@ def generate(db: Session) -> dict:
             f"reorder point. Highest risk: " + "; ".join(f"{w['product_name']} @ {w['store_code']} "
                                                        f"({w['stockout_risk_pct']:.0f}% stock-out risk)" for w in worst) + ".",
             f"Place the recommended orders ({inv['summary']['units_to_order']:,} units, "
-            f"${inv['summary']['recommended_order_value']:,.0f} at cost).",
+            f"{money(inv['summary']['recommended_order_value'])} at cost).",
             {"counts": c}, link="/app/inventory"))
     if c["Overstocked"]:
         out.append(_insight("inventory", "info", f"{c['Overstocked']} overstocked items",

@@ -27,6 +27,7 @@ from sqlalchemy.orm import Session
 
 from app.analytics import sales as sa
 from app.core.config import settings
+from app.core.money import load_currency, money
 from app.models import Category, ForecastRun, Product, Store
 
 log = logging.getLogger(__name__)
@@ -107,7 +108,7 @@ def detect_intent(q: str) -> str:
 
 
 def _money(v: float) -> str:
-    return f"-${abs(v):,.0f}" if v < 0 else f"${v:,.0f}"
+    return f"-{money(abs(v))}" if v < 0 else f"{money(v)}"
 
 
 # ------------------------------------------------------------------ intent handlers
@@ -253,7 +254,7 @@ def _summary(db, q, hi):
             + f"Inventory: {c['Critical']} critical and {c['Low Stock']} low-stock items.")
     return text, {"columns": ["Metric", "Value"], "rows": [
         ["Revenue", _money(k["total_revenue"])], ["Sales transactions", f"{k['total_orders']:,}"],
-        ["Units sold", f"{k['units_sold']:,}"], ["Avg. transaction value", f"${k['avg_order_value']:.2f}"],
+        ["Units sold", f"{k['units_sold']:,}"], ["Avg. transaction value", f"{money(k['avg_order_value'], 2)}"],
         ["Revenue growth", f"{g:+.1f}%" if g is not None else "n/a"],
         ["Forecast next 30 days", _money(k["forecasted_revenue_30d"]) if k["forecasted_revenue_30d"] else "n/a"]]}
 
@@ -270,7 +271,7 @@ def _customers(db, q, hi):
             + (f"**Champions** ({ch['customers']} customers, {ch['share_pct']}%) generate {ch['revenue_share_pct']}% of revenue. "
                if ch else "")
             + f"Repeat purchase rate is {r['kpis']['repeat_purchase_rate_pct']}%, average CLV estimate "
-              f"${r['kpis']['avg_clv']:,.0f}.")
+              f"{money(r['kpis']['avg_clv'])}.")
     return text, {"columns": ["Customer", "Segment", "Orders", "Spend", "CLV estimate"],
                   "rows": [[c["customer"], c["segment"], c["orders"], _money(c["spend"]), _money(c["clv"])]
                            for c in r["top_customers"][:10]]}
@@ -316,6 +317,7 @@ def llm_explain(question: str, answer: str, table: dict | None) -> tuple[str | N
 
 def ask(db: Session, question: str) -> dict:
     q = question.strip()[:500]
+    load_currency(db)
     _, hi = sa.data_bounds(db)
     if hi is None:
         return {"intent": "no_data", "answer": "There is no sales data yet. Load the sample data or upload a dataset.",
